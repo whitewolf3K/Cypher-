@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Book Trading</title>
+<style>
+  /* CSS styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+  .book-list {
+    list-style: none;
+    padding: 0;
+  }
+  .book-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Free Engineering Book Trading</h1>
+</header>
+<div class="container">
+  <h2>Choose Semester</h2>
+  <select id="semesterSelect">
+    <option value="1">Semester 1</option>
+    <option value="2">Semester 2</option>
+    <option value="3">Semester 3</option>
+    <option value="4">Semester 4</option>
+    <option value="5">Semester 5</option>
+    <option value="6">Semester 6</option>
+    <option value="7">Semester 7</option>
+    <option value="8">Semester 8</option>
+  </select>
+  <div id="bookContainer">
+    <h2>Available Books</h2>
+    <ul class="book-list" id="bookList">
+      <!-- Books will be dynamically added here -->
+    </ul>
+  </div>
+</div>
+<script>
+  // JavaScript code
+  const semesterSelect = document.getElementById("semesterSelect");
+  const bookList = document.getElementById("bookList");
+
+  // Books data for each semester
+  const booksBySemester = {
+    "1": [
+      { title: "Introduction to Engineering", downloadLink: "http://example.com/intro_engineering_sem1.pdf" },
+      { title: "Engineering Mathematics", downloadLink: "http://example.com/engineering_math_sem1.pdf" }
+    ],
+    "2": [
+      { title: "Mechanical Engineering Basics", downloadLink: "http://example.com/mechanical_engineering_sem2.pdf" },
+      { title: "Electrical Engineering Fundamentals", downloadLink: "http://example.com/electrical_engineering_sem2.pdf" }
+    ],
+    // Add data for other semesters
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": []
+  };
+
+  // Function to display books based on selected semester
+  function displayBooks() {
+    const semester = semesterSelect.value;
+    const books = booksBySemester[semester] || [];
+
+    bookList.innerHTML = '';
+    books.forEach(book => {
+      const li = document.createElement('li');
+      li.classList.add('book-item');
+      li.innerHTML = `
+        <h3>${book.title}</h3>
+        <p><strong>Download:</strong> <a href="${book.downloadLink}" target="_blank">Download Now</a></p>
+      `;
+      bookList.appendChild(li);
+    });
+  }
+
+  // Display books when semester changes
+  semesterSelect.addEventListener('change', displayBooks);
+
+  // Initial display of books for the default selected semester
+  displayBooks();
+</script>
+</body>
+</html>
